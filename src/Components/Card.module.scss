@@ -1,0 +1,22 @@
+.card {
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    max-width: 25em;
+
+    .title {
+        flex: 2;
+    }
+    
+    .subtitle {
+        flex: 2;
+    }
+
+    .author {
+        flex: 1;
+    }
+
+    .tags {
+        flex: 1;
+    }
+}

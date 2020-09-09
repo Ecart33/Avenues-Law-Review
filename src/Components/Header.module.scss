@@ -1,0 +1,18 @@
+.header {
+    border-bottom: 0.05em solid black;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.title {
+    flex: 2;
+    
+    .label {
+        font-size: inherit;
+    }
+}
+
+.navItem {
+    flex: 1;
+}

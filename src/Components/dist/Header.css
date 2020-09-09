@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  border: 0.1em solid black;
+}
+
+.title {
+  color: blue;
+}
