@@ -1,15 +1,25 @@
 .card {
-    border-radius: 2px;
+    border-radius: 4px;
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    margin: 0 0 5% 0;
     max-width: 25em;
+    padding: 1em 1em 1em 1em;
+    min-width: 400px;
+    max-width: 400px;
+
+    > * {
+        margin: 10px 0 10px 0 !important;
+    }
 
     .title {
-        flex: 2;
+        flex: 1;
     }
     
     .subtitle {
-        flex: 2;
+        flex: 1;
     }
 
     .author {

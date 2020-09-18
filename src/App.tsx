@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
-import { Header } from './Components/Header';
-import { Card } from './Components/Card';
+import { Homepage } from  './Components/Homepage';
+import { NotePage } from './Components/NotePage';
 
-import styles from './App.module.scss';
+export interface Article {
+  author: string,
+  footnotes: string[]
+  subtitle: string,
+  text: string[],
+  title: string,
+}
+
 
 function App() {
-  const notes = [{title: 'test 1', subtitle: 'test 2', author: 'mr perculant', tags: ['a', 'b', 'c']}]
+  const [notes, setNotes] = useState<Article[]>();
+  
+  useEffect(() => { 
+    loadNotes();
+  }, []);
+
+  const loadNotes = async () => {
+    const response = await fetch('http://127.0.0.1:5000/');
+    const data = await response.json();
+    setNotes(data);
+  }
 
 
   return (
-    <div className={styles.main}>
-      <Header/>
-      <div className={styles.cardLayout}>
-        { notes.map(n => <Card title={n.title} subtitle={n.subtitle} author={n.author} tags={n.tags}/> ) }
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          {notes ? <Homepage articles={notes}/> : ''}
+        </Route>
+        {notes ? notes.map(n => 
+          (<Route path={`/notes/${btoa(n.title)}`}>
+            <NotePage article={n}/>
+            </Route>)
+        ) : ''}
+      </Switch>
+    </Router>
   );
 }
 

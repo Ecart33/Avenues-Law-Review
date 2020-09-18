@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 
 export const Header: React.FC = () => {
@@ -10,7 +11,8 @@ export const Header: React.FC = () => {
                     'root': styles.title,
                     'label': styles.label,
                 }} 
-                href='#'
+                component={Link}
+                to='/'
             >
                 Avenues Law Review
             </Button>
@@ -18,7 +20,8 @@ export const Header: React.FC = () => {
                 classes={{
                     'root': styles.navItem
                 }} 
-                href='#'
+                component={Link}
+                to='/'
             >
                 about
             </Button>
@@ -26,7 +29,8 @@ export const Header: React.FC = () => {
                 classes={{
                     'root': styles.navItem
                 }} 
-                href='#'
+                component={Link}
+                to='/'
             >
                 submit
             </Button>
