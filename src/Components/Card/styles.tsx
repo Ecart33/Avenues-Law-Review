@@ -1,20 +1,26 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  border-radius: 4px;
-  border: 1px solid black;
+import { Card } from '@material-ui/core';
+
+export const Wrapper = styled(Card)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 0 5% 0;
-  max-width: 25em;
-  padding: 1em 1em 1em 1em;
-  min-width: 400px;
-  max-width: 400px;
+  min-width: 350px;
+  max-width: 350px;
+  text-align: center;
+  padding: 25px;
+  margin: 25px;
+  border-color: #d3d3d3;
 `;
 
 export const Title = styled.h1`
   flex: 1;
+  color: #000000;
+  &:visited,
+  &:link {
+    color: #00000;
+  }
 `;
 
 export const Subtitle = styled.p`

@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 
 import * as SC from './styles';
 
-export const Card: React.FC<CardPropTypes> = ({ title, subtitle, author }) => {
-  return (
-    <Link to={`/notes/${btoa(title)}`}>
-      <SC.Wrapper>
-        <SC.Title>{title}</SC.Title>
-        <SC.Subtitle>{subtitle}</SC.Subtitle>
-        <SC.Author>{author}</SC.Author>
-      </SC.Wrapper>
+export const Card: React.FC<CardPropTypes> = ({ title, subtitle, author }) => (
+  <SC.Wrapper>
+    <Link to={`/notes/${btoa(title)}`} style={{ color: 'black' }}>
+      <SC.Title>{title}</SC.Title>
     </Link>
-  );
-};
+    <SC.Subtitle>{subtitle}</SC.Subtitle>
+    <SC.Author>{author}</SC.Author>
+  </SC.Wrapper>
+);
 
 type CardPropTypes = {
   title: string;
