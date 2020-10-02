@@ -21,3 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 `;
+
+// White: #ffffff
+// Blue highlights: #002A58
+// Light blue highlights: #78ADCA

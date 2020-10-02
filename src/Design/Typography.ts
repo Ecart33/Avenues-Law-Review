@@ -1,7 +1,7 @@
-const FONT_INTER = 'Inter, sans-serif';
+const FONT_INTER = 'Inter, gotham';
 const FONT_MONTSERRAT = 'Montserrat, sans-serif';
 
-export const BASE_FONT_SIZE = 20;
+export const BASE_FONT_SIZE = 22;
 export const BASE_LINE_HEIGHT = 26;
 export const MODULAR_SCALE = 1.2;
 
