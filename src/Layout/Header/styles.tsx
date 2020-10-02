@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { BASE_FONT_SIZE } from '../../Design/Typography';
 
 export const Bar = styled(AppBar)`
-  color: red;
+  // margin-bottom: 0px;
+  padding: 10px;
 `;
 
 export const B: any = styled(Button)`

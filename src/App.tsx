@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import { Box } from '@material-ui/core';
+
 import { Homepage } from './Pages/Homepage';
 import { NotePage } from './Pages/NotePage';
 
@@ -15,7 +17,7 @@ export type Article = {
   subtitle: string;
   text: string[];
   title: string;
-  // footnotes: string[];
+  footnotes: string[];
 };
 
 export type TestArticle = {
@@ -43,25 +45,29 @@ export const App = () => {
         title: 'test 1',
         subtitle: 'test 1',
         author: 'mr perculant',
-        text: ['123456']
+        text: ['123456'],
+        footnotes: ['test']
       },
       {
         title: 'test 2',
         subtitle: 'test 2',
         author: 'prof perculator',
-        text: ['123456']
+        text: ['123456'],
+        footnotes: ['test']
       },
       {
         title: 'test 3',
         subtitle: 'test 3',
         author: 'prof perculator',
-        text: ['123456']
+        text: ['123456'],
+        footnotes: ['test']
       },
       {
         title: 'test 4',
         subtitle: 'test 4',
         author: 'prof perculator',
-        text: ['123456']
+        text: ['123456'],
+        footnotes: ['test']
       }
     ];
     const footnotes: string[] = [];
@@ -85,7 +91,11 @@ export const App = () => {
       <Header />
       <Switch>
         <Route exact path='/'>
-          {notes && <Homepage articles={notes} />}
+          {notes && (
+            <Box>
+              <Homepage articles={notes} />
+            </Box>
+          )}
         </Route>
         {notes &&
           notes.map((x, i) => (
