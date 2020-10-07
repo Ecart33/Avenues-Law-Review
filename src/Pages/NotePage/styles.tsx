@@ -5,22 +5,40 @@ import { Box } from '@material-ui/core';
 import { BASE_FONT_SIZE } from '../../Design/Typography';
 
 export const LeftCite = styled.div`
-  color: blue;
+  border-top: 0.5px dotted grey;
+  position: absolute;
+  left: 20%;
+  max-width: 7%;
+  font-size: 10px;
+  margin: 0;
+  word-break: break-word;
 `;
 
 export const RightCite = styled.div`
-  color: red;
+  border-top: 0.5px dotted grey;
+  position: absolute;
+  left: 73%;
+  max-width: 7%;
+  font-size: 10px;
+  margin: 0;
+  word-break: break-word;
 `;
 
-export const ArticleContainer = styled(Box)`
-  position: absolute;
-  max-width: 50%;
-  left: 50%;
-  height: 500px;
-  top: 30%;
-  // min-width: 50%;
-  transform: translate(-50%, -50%);
-  // box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+export const ArticleWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  margin: 5% auto 0 auto;
+  max-width: 45%;
+`
+export const Line = styled.p`
+  margin: 0;
+  padding: 0;
+  display: inline;
+`
+
+export const ArticleContainer = styled.div`
+  font-family: 'Nunito Sans', sans-serif;
 `;
 
 export const CiteText = styled.p`
@@ -43,3 +61,13 @@ export const Text = styled.p`
 export const LineBreak = styled.br`
   line-height: 5px;
 `;
+
+export const Meta = styled.div`
+  position: absolute;
+  left: 20%;
+  max-width: 7%;
+`
+export const FootnoteReference = styled.span`
+  border: 1px solid black;
+  border-radius: 25%;
+`

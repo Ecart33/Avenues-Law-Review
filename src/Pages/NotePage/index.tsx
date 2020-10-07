@@ -1,49 +1,103 @@
-import React, { Fragment } from 'react';
+// @ts-nocheck
+import React, { useState, useCallback } from 'react';
 
-import { Box } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
-import * as SC from './styles';
+import { Box, Button } from '@material-ui/core';
+
+import SaveIcon from '@material-ui/icons/Save';
+
+import { KeyboardArrowUp } from '@material-ui/icons';
+
+import {Title, Author, ArticleContainer, ArticleWrapper, Text, LineBreak, LeftCite, RightCite, Meta, Line, FootnoteReference } from './styles';
 
 import { Article, TestArticle } from '../../App';
 
-const tab = '        ';
-export const NotePage: React.FC<NotePagePropTypes> = ({ article }) => {
-  // const leftCitations: string[] = [];
+function useClientRect() {
+  const [rect, setRect] = useState(null);
+  const ref = useCallback((node) => {
+    if (node !== null) {
+      setRect(node.getBoundingClientRect());
+    }
+  }, []);
+  return [rect, ref];
+}
 
-  const paragraphs = article.text.join('').split('        ');
+const FootnoteRef: React.FC<{ index: string }> = ({ index }) => {
+  const [rect, ref] = useClientRect();
 
-  console.log(paragraphs.join('\n\t'));
   return (
-    <Box>
-      {/* <SC.LeftCite></SC.LeftCite> */}
-      <SC.ArticleContainer alignItems='center'>
-        <SC.Title>{article.title}</SC.Title>
-        <SC.Author>{article.author}</SC.Author>
-        {paragraphs.map((x, i) => (
-          <Fragment key={i + 200}>
-            <SC.Text key={i + 100}>{tab + x}</SC.Text>
-            <SC.LineBreak key={i} />
-          </Fragment>
-        ))}
-        {article.footnotes && (
-          <>
-            <hr />
-            <Box>
-              {article.footnotes.map((x, i) => (
-                <SC.CiteText key={i}>{x}</SC.CiteText>
-              ))}
-            </Box>
-          </>
-        )}
-      </SC.ArticleContainer>
+    <FootnoteReference ref={ref}>
+      {index}
+      {rect !== null && console.log(rect.top)}
+    </FootnoteReference>
+  )
+}
+
+const Citation: React.FC<{footnote: string, index: string}> = ({footnote, index}) => {
+  if (Number(index) % 2 != 0) {
+    return (
+      <LeftCite>
+        <Line>{footnote}</Line>
+      </LeftCite>
+    )
+  } else {
+    return (
+      <RightCite>
+       <Line>{footnote}</Line>
+      </RightCite>
+    )
+  }
+}
+
+const ArticleParser = (textBlock: string[]) => {
+  const text = textBlock[0];
+  const citation = textBlock[1]
+  const footnoteExtract = /(?<=\[).+?(?=\])/g;
+
+  if(citation === '') {
+    return (
+      <span>
+        <Line>{text}<br/>&emsp;&emsp;</Line>
+      </span>
+    )
+  } else {
+    const index = citation.match(footnoteExtract);
+    return (
+      <span>
+        <Line>{text}</Line>
+        <FootnoteRef index={index ? index[0] : ''}/>
+        <Citation footnote={citation} index={index ? index[0] : ''}/>
+      </span>
+    )
+  }
+}
+
+export const NotePage: React.FC<NotePagePropTypes> = ({ article }) => {
+
+  return (
+    <ArticleWrapper>
+      <Meta>
+        <Button startIcon={<SaveIcon />} href={`http://localhost:1337${article.PDF.url}`}>
+          PDF
+        </Button>
+      </Meta>
+      <ArticleContainer>
+        <Title>{article.Title}</Title>
+        <Author>{article.Author}</Author>
+        {article.article.article.map( (x, i) => (
+          ArticleParser(x)
+        ))
+        }
+      </ArticleContainer>
 
       {/* <SC.RightCite></SC.RightCite> */}
-    </Box>
+    </ArticleWrapper>
   );
 };
 
 // type CitationPropTypes = { footnote: Footnote };
 
 type NotePagePropTypes = {
-  article: Article | TestArticle;
+  article: Article;
 };

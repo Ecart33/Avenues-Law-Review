@@ -10,7 +10,7 @@ export const Main = styled.div`
 export const CardLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   margin: 5% 20% 0 20%;
 `;
 

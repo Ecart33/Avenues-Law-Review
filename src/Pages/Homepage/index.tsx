@@ -5,16 +5,19 @@ import { Article } from '../../App';
 
 import * as SC from './styles';
 
-export const Homepage: React.FC<HomepagePropTypes> = ({ articles }) => (
+export const Homepage: React.FC<HomepagePropTypes> = ({ articles }) => {
+  console.log(articles);
+  return (
   <SC.Main>
     <SC.CardLayout>
       {articles.map((n, i) => (
-        <Card key={i} title={n.title} subtitle={n.subtitle} author={n.author} />
+        <Card key={i} title={n.Title} subtitle={n.Abstract} author={n.Author} />
       ))}
     </SC.CardLayout>
   </SC.Main>
-);
+  )
+      };
 
 type HomepagePropTypes = {
-  articles: Article[];
+  articles: any[];
 };

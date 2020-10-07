@@ -12,13 +12,48 @@ import { GlobalStyles } from './globalStyles';
 
 import Trace from './Assets/Notes/Trace.json';
 
+type BackendUser = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  username: string | undefined;
+}
+
 export type Article = {
-  author: string;
-  subtitle: string;
-  text: string[];
-  title: string;
-  footnotes: string[];
+  Abstract: string;
+  Author: string;
+  Title: string;
+  article: {
+    article:[string[]]
+  };
+  created_at: string;
+  created_by: BackendUser;
+  id: number;
+  updated_at: string;
+  updated_by: BackendUser;
+  PDF: {
+    id: number,
+    name:string,
+    alternativeText: string,
+    caption: string,
+    width: number | undefined,
+    height: number | undefined,
+    formats: string | undefined,
+    hash: string,
+    ext: string,
+    mime: string,
+    size: number,
+    url: number,
+    previewUrl: string | undefined,
+    provider: string,
+    provider_metadata: string | undefined,
+    created_by: number,
+    updated_by: number,
+    created_at: string,
+    updated_at: string
+  }
 };
+
 
 export type TestArticle = {
   author: string;
@@ -29,17 +64,19 @@ export type TestArticle = {
 };
 
 export const App = () => {
-  const [notes, setNotes] = useState<Article[]>();
+  const [notes, setNotes] = useState<Article[]>([]);
   const [test, setTest] = useState<TestArticle>();
+
+  const [tester, setTester] = useState();
 
   useEffect(() => {
     loadNotes();
   }, []);
 
   const loadNotes = async () => {
-    // const response = await fetch('http://127.0.0.1:5000/');
-    // const data = await response.json();
-
+    const response = await fetch('http://localhost:1337/Articles');
+    const data = await response.json();
+    /*
     const data = [
       {
         title: 'test 1',
@@ -70,20 +107,24 @@ export const App = () => {
         footnotes: ['test']
       }
     ];
-    const footnotes: string[] = [];
-    const fixedText: string[] = [];
-    Trace.text.forEach(([text, footnote]) => {
-      fixedText.push(text);
-      footnotes.push(footnote);
-    });
+    
+    data.forEach( (article) =>
+      const footnotes: string[] = [];
+      const fixedText: string[] = [];
+      article.text.forEach(([text, footnote]) => {
+        fixedText.push(text);
+        footnotes.push(footnote);
+      });
     setTest({
       ...Trace,
       footnotes,
       text: fixedText
-    });
-
+    }); */
+    console.log(data)
     setNotes(data);
   };
+
+ 
 
   return (
     <Router>
@@ -99,15 +140,11 @@ export const App = () => {
         </Route>
         {notes &&
           notes.map((x, i) => (
-            <Route key={i} path={`/notes/${btoa(x.title)}`}>
+            <Route key={i} path={`/notes/${btoa(x.Title)}`}>
               <NotePage article={x} />
             </Route>
-          ))}
-        {test && (
-          <Route path='/notes/test'>
-            <NotePage article={test} />
-          </Route>
-        )}
+          ))
+        }
       </Switch>
     </Router>
   );

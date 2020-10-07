@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import * as SC from './styles';
-
+//DESIGNATE HIEGHT FOR EACH ROW BASED OFF HEIGHT OFF TALLEST ITEM IN ROW
 export const Card: React.FC<CardPropTypes> = ({ title, subtitle, author }) => (
-  <SC.Wrapper>
+  <SC.Wrapper variant='outlined'>
     <Link to={`/notes/${btoa(title)}`} style={{ color: 'black' }}>
       <SC.Title>{title}</SC.Title>
     </Link>
