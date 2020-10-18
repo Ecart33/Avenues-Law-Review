@@ -10,7 +10,7 @@ import { Header } from './Layout/Header';
 
 import { GlobalStyles } from './globalStyles';
 
-import Trace from './Assets/Notes/Trace.json';
+import { prod_config } from './config.js';
 
 type BackendUser = {
   id: number;
@@ -74,7 +74,7 @@ export const App = () => {
   }, []);
 
   const loadNotes = async () => {
-    const response = await fetch('http://localhost:1337/Articles');
+    const response = await fetch(prod_config.apiURL);
     const data = await response.json();
     setNotes(data);
   };
