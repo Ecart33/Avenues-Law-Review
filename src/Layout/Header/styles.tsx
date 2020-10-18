@@ -15,12 +15,10 @@ export const B: any = styled(Button)`
 `;
 
 export const AVLogo = styled.img`
-  padding: 20px 8px;
   width: 350px;
-  height: 126px;
+  height: 350px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1em;
 `;
 
 export const InnerHead = styled.div`
@@ -34,6 +32,6 @@ export const NavBar = styled.div`
 `
 
 export const HeaderWrap = styled.div`
-  margin: 5% 20% 0 20%;
+  margin: 0 20% 0 20%;
   border-bottom: 0.05em solid black;
 `

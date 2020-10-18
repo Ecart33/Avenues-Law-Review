@@ -76,51 +76,6 @@ export const App = () => {
   const loadNotes = async () => {
     const response = await fetch('http://localhost:1337/Articles');
     const data = await response.json();
-    /*
-    const data = [
-      {
-        title: 'test 1',
-        subtitle: 'test 1',
-        author: 'mr perculant',
-        text: ['123456'],
-        footnotes: ['test']
-      },
-      {
-        title: 'test 2',
-        subtitle: 'test 2',
-        author: 'prof perculator',
-        text: ['123456'],
-        footnotes: ['test']
-      },
-      {
-        title: 'test 3',
-        subtitle: 'test 3',
-        author: 'prof perculator',
-        text: ['123456'],
-        footnotes: ['test']
-      },
-      {
-        title: 'test 4',
-        subtitle: 'test 4',
-        author: 'prof perculator',
-        text: ['123456'],
-        footnotes: ['test']
-      }
-    ];
-    
-    data.forEach( (article) =>
-      const footnotes: string[] = [];
-      const fixedText: string[] = [];
-      article.text.forEach(([text, footnote]) => {
-        fixedText.push(text);
-        footnotes.push(footnote);
-      });
-    setTest({
-      ...Trace,
-      footnotes,
-      text: fixedText
-    }); */
-    console.log(data)
     setNotes(data);
   };
 

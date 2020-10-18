@@ -4,25 +4,17 @@ import { Box } from '@material-ui/core';
 
 import { BASE_FONT_SIZE } from '../../Design/Typography';
 
-export const LeftCite = styled.div`
+export const Cite = styled.div`
   border-top: 0.5px dotted grey;
   position: absolute;
-  left: 20%;
+  left: ${props => props.theme.left ? '19%' : '74%' };
   max-width: 7%;
   font-size: 10px;
   margin: 0;
   word-break: break-word;
+  top: ${props => props.theme.top ? `${props.theme.top}px` : 'auto'};
 `;
 
-export const RightCite = styled.div`
-  border-top: 0.5px dotted grey;
-  position: absolute;
-  left: 73%;
-  max-width: 7%;
-  font-size: 10px;
-  margin: 0;
-  word-break: break-word;
-`;
 
 export const ArticleWrapper = styled.div`
   display: flex;
@@ -70,4 +62,13 @@ export const Meta = styled.div`
 export const FootnoteReference = styled.span`
   border: 1px solid black;
   border-radius: 25%;
+  font-size: 10px;
+  vertical-align: top;
+  > a {
+    text-decoration: none;
+  }
+  &:visited,
+  &:link {
+    color: #00688B;
+  }
 `
