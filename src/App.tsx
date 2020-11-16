@@ -11,7 +11,7 @@ import { Header } from './Layout/Header';
 
 import { GlobalStyles } from './globalStyles';
 
-import { local_config } from './config.js';
+import { prod_config } from './config.js';
 
 type BackendUser = {
   id: number;
@@ -75,7 +75,7 @@ export const App = () => {
   }, []);
 
   const loadNotes = async () => {
-    const response = await fetch(local_config.apiURL);
+    const response = await fetch(prod_config.apiURL);
     const data = await response.json();
     setNotes(data);
   };
