@@ -5,12 +5,13 @@ import { Box } from '@material-ui/core';
 
 import { Homepage } from './Pages/Homepage';
 import { NotePage } from './Pages/NotePage';
+import { AboutPage } from './Pages/AboutPage';
 
 import { Header } from './Layout/Header';
 
 import { GlobalStyles } from './globalStyles';
 
-import { prod_config } from './config.js';
+import { local_config } from './config.js';
 
 type BackendUser = {
   id: number;
@@ -74,7 +75,7 @@ export const App = () => {
   }, []);
 
   const loadNotes = async () => {
-    const response = await fetch(prod_config.apiURL);
+    const response = await fetch(local_config.apiURL);
     const data = await response.json();
     setNotes(data);
   };
@@ -86,6 +87,9 @@ export const App = () => {
       <GlobalStyles />
       <Header />
       <Switch>
+        <Route path='/about'>
+          <AboutPage />
+        </Route>
         <Route exact path='/'>
           {notes && (
             <Box>
